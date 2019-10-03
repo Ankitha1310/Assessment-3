@@ -1,0 +1,87 @@
+package com.demos.customerDao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import DbConn.DbConn;
+
+import com.demos.customerDao.customerDao;
+
+import com.demos.Customer.Customer;
+
+public class customerDao {
+
+	
+	public String saveCustomer(Customer customer)
+	{
+		try
+		{			
+		Connection con=DbConn.getConnection();
+
+		String sql="insert into customer values(?,?,?,?)";
+	
+		PreparedStatement stat=con.prepareStatement(sql);
+			
+		stat.setString(1,customer.getcName());
+		stat.setString(2,customer.getcLastName());
+		stat.setString(3,customer.getCustId());
+		stat.setString(4,customer.getAddr());
+		
+		int res= stat.executeUpdate();
+		if(res>0)
+		{
+			//con.commit();
+			return "customer saved";
+		}
+
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return "customer not saved";
+		
+	}
+	
+	public String createCID(String name,String lname)
+	{
+		try
+		{			
+		Connection con=DbConn.getConnection();
+		String n = name;
+		String ln = lname;
+		int cust_id;
+		
+		String sql1="SELECT CUSTID.NEXTVAL FROM DUAL";
+		//(CUSTID.NEXTVAL, 'FM009')
+		
+		PreparedStatement stat1=con.prepareStatement(sql1);
+		ResultSet rs = stat1.executeQuery();
+		
+		if ( rs.next() ) 
+		{
+		  cust_id = rs.getInt(1);
+		}		
+		else 
+		{
+		  return "cannot access sequence";
+		}
+		
+		
+		return name.substring(0,2)+lname.substring(0,2)+"00"+cust_id;
+		
+		
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return "it dint enter try block";
+	}
+	
+}

@@ -1,0 +1,29 @@
+package com.demos.customerService;
+
+import java.util.ArrayList;
+import javax.swing.JTable;
+import com.demos.Customer.Customer;
+import com.demos.customerDao.customerDao;
+
+public class customerService {
+
+	
+	
+	public static void main(String[] args) {
+
+		customerService cs = new customerService();
+		customerDao customer = new customerDao();		
+		String name = "vijaya";
+		String lname = "susheela";
+		String cid = customer.createCID(name, lname);
+		
+		//System.out.println(cid);
+		
+ 		Customer customer1 = new Customer(name,lname,cid,"busan");
+		String result = customer.saveCustomer(customer1);
+		System.out.println(result);
+	
+		
+	}
+
+}

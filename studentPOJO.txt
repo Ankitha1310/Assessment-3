@@ -1,0 +1,48 @@
+package com.demos.Customer;
+
+public class Customer {
+
+	String cName;
+	String cLastName;
+	String custId;
+	String addr;
+	
+	
+	public Customer(String cName, String cLastName, String custId, String addr) {
+		super();
+		this.cName = cName;
+		this.cLastName = cLastName;
+		this.custId = custId;
+		this.addr = addr;
+	}
+	
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+	public String getcLastName() {
+		return cLastName;
+	}
+	public void setcLastName(String cLastName) {
+		this.cLastName = cLastName;
+	}
+	public String getCustId() {
+		return custId;
+	}
+	public void setCustId(String custId) {
+		this.custId = custId;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	
+	public String toString(){
+		return cName+" "+cLastName+" "+custId+" "+addr;
+	}
+}
+

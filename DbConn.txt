@@ -1,0 +1,27 @@
+package DbConn;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DbConn {
+
+
+public static Connection getConnection()  //returns connection type coz prepares statement uses 
+{											//con object of connection, which is declared in this class
+try
+{
+Class.forName("oracle.jdbc.OracleDriver");		 //load the driver
+Connection con= DriverManager.getConnection			
+("jdbc:oracle:thin:@localhost:1521:xe","panda","panda"); 	//connect to db,xe is instance name
+System.out.println("connected");
+return con;
+}
+catch (Exception e) {
+e.printStackTrace();
+return null;
+}
+
+}
+
+
+}
